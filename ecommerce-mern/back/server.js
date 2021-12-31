@@ -8,6 +8,13 @@ dotenv.config({ path: "back/config/config.env" });
 // conecting to database
 connectDatabase();
 
+// lidando com exceção não capturada
+process.on("uncaughtException", (err) => {
+    console.log(`Error: ${err.message}`);
+    console.log(`Desligando o servidor devido a uma exceção não detectada`);
+    process.exit(1);
+});
+
 const port = process.env.PORT || 3001;
 
 const server = app.listen(port, () => {

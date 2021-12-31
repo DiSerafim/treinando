@@ -1,4 +1,5 @@
 const Product = require("../models/productModel");
+const ErrorHander = require("../utils/errorhander");
 
 // testa a rota
 exports.testRoute = (req, res) => {
@@ -25,10 +26,7 @@ exports.getAllProducts = async (req, res) => {
 exports.updateProduct = async (req, res, next) => {
     let product = await Product.findById(req.params.id);
     if (!product) {
-        return res.status(500).json({
-            success: false,
-            message: "Produto não encontrado"
-        })
+        return next(new ErrorHander("Produto não encontrado", 404));
     }
     product = await Product.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
@@ -44,10 +42,7 @@ exports.updateProduct = async (req, res, next) => {
 exports.deleteProduct = async (req, res, next) => {
     const product = await Product.findById(req.params.id);
     if (!product) {
-        return res.status(500).json({
-            success: false,
-            message: "Produto não encontrado"
-        })
+        return next(new ErrorHander("Produto não encontrado", 404));
     }
     await product.remove();
     res.status(200).json({
@@ -59,10 +54,7 @@ exports.deleteProduct = async (req, res, next) => {
 exports.getProductDeails = async (req, res, next) => {
     const product = await Product.findById(req.params.id);
     if (!product) {
-        return res.status(500).json({
-            success: false,
-            message: "Produto não encontrado"
-        })
+        return next(new ErrorHander("Produto não encontrado", 404));
     }
     res.status(200).json({
         success: true,

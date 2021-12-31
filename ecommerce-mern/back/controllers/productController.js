@@ -1,5 +1,10 @@
 const Product = require("../models/productModel");
 
+// testa a rota
+exports.testRoute = (req, res) => {
+    res.status(200).json({ message: "A rota está funcionando bem" });
+}
+
 // Cria um produto -- admin
 exports.createProduct = async (req, res, next) => {
     const product = await Product.create(req.body);
@@ -8,7 +13,6 @@ exports.createProduct = async (req, res, next) => {
         product
     })
 }
-
 // Pega todos produtos
 exports.getAllProducts = async (req, res) => {
     const products = await Product.find();
@@ -17,7 +21,6 @@ exports.getAllProducts = async (req, res) => {
         products
     });
 }
-
 // Atualiza um produto -- admin
 exports.updateProduct = async (req, res, next) => {
     let product = await Product.findById(req.params.id);
@@ -37,8 +40,32 @@ exports.updateProduct = async (req, res, next) => {
         product
     })
 }
-
-// testa a rota
-exports.testRoute = (req, res) => {
-    res.status(200).json({ message: "A rota está funcionando bem" });
+// deleta um produto
+exports.deleteProduct = async (req, res, next) => {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+        return res.status(500).json({
+            success: false,
+            message: "Produto não encontrado"
+        })
+    }
+    await product.remove();
+    res.status(200).json({
+        success: true,
+        message: "Produto deletado com sucesso"
+    })
+}
+// obtem detalhes de um produto
+exports.getProductDeails = async (req, res, next) => {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+        return res.status(500).json({
+            success: false,
+            message: "Produto não encontrado"
+        })
+    }
+    res.status(200).json({
+        success: true,
+        product
+    })
 }

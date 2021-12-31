@@ -18,4 +18,6 @@ D - delete
 - Postman, para testar as rotas do localhost
 - mongodb compass, para visualização do banco de dados
 
+- npm run dev (starta o localhost)
+
 <!-- FRONT END -->

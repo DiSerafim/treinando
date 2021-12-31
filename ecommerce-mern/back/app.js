@@ -3,7 +3,7 @@ const app = express();
 
 app.use(express.json());
 
-// Route Imports
+// rota de importações
 const product = require("./routes/productRoute");
 
 app.use("/api/v1", product);

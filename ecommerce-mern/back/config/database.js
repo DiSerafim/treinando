@@ -8,10 +8,7 @@ const connectDatabase = () => {
     })
     .then((data) => {
         console.log(`Mongodb conectado ao servidor: ${data.connection.host}`);
-    })
-    .catch((err) => {
-        console.log(err, "erro, database.js");
-    })
+    });
 }
 
 module.exports = connectDatabase;

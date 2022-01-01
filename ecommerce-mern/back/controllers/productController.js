@@ -1,6 +1,7 @@
 const Product = require("../models/productModel");
-const ErrorHander = require("../utils/errorhander");
+const ErrorHander = require("../utils/errorHander");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const ApiFeatures = require("../utils/apiFeatures");
 
 // testa a rota
 exports.testRoute = (req, res) => {
@@ -12,16 +13,21 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.create(req.body);
     res.status(201).json({
         success: true,
-        product
-    })
+        product,
+    });
 });
 
 // Pega todos produtos
 exports.getAllProducts = catchAsyncErrors(async (req, res) => {
-    const products = await Product.find();
+    const resultPerPage = 10;
+    const apiFeature = new ApiFeatures(Product.find(), req.query)
+    .search()
+    .filter()
+    .pagination(resultPerPage);
+    const products = await apiFeature.query;
     res.status(200).json({
         success: true,
-        products
+        products,
     });
 });
 
@@ -38,8 +44,8 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     });
     res.status(200).json({
         success: true,
-        product
-    })
+        product,
+    });
 });
 
 // deleta um produto
@@ -63,6 +69,6 @@ exports.getProductDeails = catchAsyncErrors(async (req, res, next) => {
     }
     res.status(200).json({
         success: true,
-        product
-    })
+        product,
+    });
 });

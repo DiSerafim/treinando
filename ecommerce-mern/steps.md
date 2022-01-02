@@ -8,6 +8,8 @@ npx eslint --init
 
 npm install nodemon (no back-end)
 
+npm install bcryptjs jsonwebtoken validator nodemailer cookie-parser body-parser
+
 <!-- BACK END -->
 Rest: API (CRUD)
 C - create

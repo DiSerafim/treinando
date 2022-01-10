@@ -1,6 +1,7 @@
 const ErrorHander = require("../utils/errorHander");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const User = require("../models/userModel");
+const sendToken = require("../utils/jwtToken");
 
 // registra um usuário
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -14,35 +15,35 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
             url: "urlFotoPerfil",
         },
     });
-
-    const token = user.getJWTToken();
-
-    res.status(201).json({
-        success: true,
-        token,
-    })
+    sendToken(user, 201, res);
 });
 
 // Login de usuário
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
     const { email, password } = req.body;
-
     // Verificar se o usuário forneceu senha e e-mail correto
     if (!email || !password) {
         return next(new ErrorHander("Por favor, insira o e-mail e a senha", 400));
     }
     const user = await User.findOne({ email }).select("+password");
     if (!user) {
-        return next(new ErrorHander("Email ou Senha, inválido", 401));
+        return next(new ErrorHander("Email & Senha, inválido", 401));
     }
     const isPasswordMatched = await user.comparePassword(password);
     if (!isPasswordMatched) {
         return next(new ErrorHander("Email ou Senha, inválido", 401));
     }
+    sendToken(user, 200, res);
+});
 
-    const token = user.getJWTToken();
+// Logout usuário
+exports.logout = catchAsyncErrors(async (req, res, next) => {
+    res.cookie("token", null, {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+    });
     res.status(200).json({
         success: true,
-        token,
+        message: "Desconectado",
     });
-});
+})

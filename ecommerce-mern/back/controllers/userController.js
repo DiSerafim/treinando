@@ -84,3 +84,31 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 })
 
 // resetar senha de login
+exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
+    // criando token hash
+    const resetPasswordToken = crypto
+      .createHash("sha256")
+      .update(req.params.token)
+      .digest("hex");
+
+    const user = await User.findOne({
+        resetPasswordToken,
+        resetPasswordExpire: { $gt: Date.now() },
+    });
+    
+    if (!user) {
+        return next(
+            new ErrorHander("A redefinição de senha é inválida ou expirou", 400)
+        );
+    }
+    if (req.body.password !== req.body.confirmPassword) {
+        return next(new ErrorHander("Senhas não coincidem", 400));
+    }
+
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();
+    sendToken(user, 200, res);
+});

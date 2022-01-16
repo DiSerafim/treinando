@@ -3,6 +3,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const User = require("../models/userModel");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
+const crypto = require("crypto")
 
 // registra um usuário
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -49,19 +50,20 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
     });
 })
 
-// Esqueceu a senha
+// Esqueceu a senha(email para recuperação e senha)
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
-    const user = await User.findOne({ email: req.doby.email });
+    const user = await User.findOne({ email: req.body.email });
     if (!user) {
-        return next(new ErrorHander("Usuário não enconrado", 404));
+        return next(new ErrorHander("Usuário não encontrado", 404));
     }
     // Obter token de redefinição de senha
     const resetToken = user.getResetPasswordToken();
     await user.save({ validateBeforeSave: false });
     const resetPasswordUrl = `${req.protocol}://${req.get(
         "host"
-    )}/api/v1/pasword/reset/${resetToken}`;
-    const message = `Seu token de redefinição de senha é :- \n\n ${resetPasswordUrl} \n\n se você não solicitou este e-mail, por favor, ignore-o`;
+    )}/api/v1/password/reset/${resetToken}`;
+    const message = `Seu token de redefinição de senha é :-
+      \n\n ${resetPasswordUrl} \n\n se você não solicitou este e-mail, por favor, ignore-o`;
     try {
         await sendEmail({
             email: user.email,
@@ -70,13 +72,15 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
         });
         res.status(200).json({
             success: true,
-            message: `Email enviado para: ${user.email} com sucesso`,
+            message: `Email enviado para: '${user.email}' com sucesso`,
         });
     } catch (error) {
-        user.getResetPasswordToken = undefined;
+        user.resetPasswordToken = undefined;
         user.resetPasswordExpire = undefined;
         await user.save({ validateBeforeSave: false });
         return next(new ErrorHander(error.message, 500));
     }
 
 })
+
+// resetar senha de login

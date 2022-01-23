@@ -159,3 +159,61 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
         success: true,
     });
 });
+
+// todos usuários
+exports.getAllUsers  =catchAsyncErrors(async (req, res, next) => {
+    const users = await User.find();
+    res.status(200).json({
+        success: true,
+        users,
+    });
+});
+
+// pega um admin
+exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+        return next(
+            new ErrorHander(`O usuário não existe com este 'id': ${req.params.id}`)
+        );
+    }
+    res.status(200).json({
+        success: true,
+        user,
+    });
+});
+
+// Atualizar o grau do usuário -- Admin
+exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
+    const newUserData = {
+        name: req.body.name,
+        email: req.body.email,
+        role: req.body.role,
+    };
+    const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+    });
+    res.status(200).json({
+        success: true,
+    });
+});
+
+// Deleta usuário -- Admin
+exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+    
+    // vamos remover do cloudinary
+    if (!user) {
+        return next(
+            new ErrorHander(`O usuário não existe com este 'id': ${req.params.id}`)
+        );
+    }
+    await user.remove();
+
+    res.status(200).json({
+        success: true,
+        message: "Usuário excluído com sucesso",
+    });
+});

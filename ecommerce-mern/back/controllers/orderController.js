@@ -78,8 +78,11 @@ exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
 // Atualiza status do pedido -- Admin
 exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
     const order = await Order.findById(req.params.id);
+    if (!order) {
+        return next(new ErrorHander("Pedido não encontrado, com este Id", 404));
+    }
     if (order.orderStatus === "Entregue") {
-        return next(new ErrorHander("O pedido já foi enregue"), 400);
+        return next(new ErrorHander("O pedido já foi entregue"), 400);
     }
     order.orderItems.forEach(async (o) => {
         await updateStock(o.Product, o.quantity);
@@ -102,8 +105,9 @@ async function updateStock(id, quantity) {
 }
 
 // delete Pedido -- Admin
-exports.deleteOrder = catchAsyncErrors(async(req, res, next) => {
+exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
     const order = await Order.findById(req.params.id);
+
     if (!order) {
         return next(new ErrorHander("Pedido não encontrado, com este Id", 404));
     }

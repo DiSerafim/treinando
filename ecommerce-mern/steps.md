@@ -23,3 +23,11 @@ D - delete
 - npm run dev (starta o localhost)
 
 <!-- FRONT END -->
+npx create-react-app .
+npm start
+npm i axios react-alert react-alert-template-basic react-helmet react-redux redux redux-thunk redux-devtools-extension react-router-dom overlay-navbar
+
+npm install react-icons
+
+passo a passo do avbar:
+https://www.npmjs.com/package/overlay-navbar

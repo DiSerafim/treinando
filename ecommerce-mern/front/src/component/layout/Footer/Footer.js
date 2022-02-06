@@ -1,7 +1,10 @@
 import React from "react";
-import playStore from "../../../images/logo.png";
-import appStore from "../../../images/logo.png";
+import playStore from "../../../images/play-store.png";
+import appStore from "../../../images/app-store.png";
 import "./Footer.css"
+import { CgFacebook } from "react-icons/cg";
+import { CgYoutube } from "react-icons/cg";
+import { CgInstagram } from "react-icons/cg";
 
 const Footer = () => {
     return (
@@ -21,9 +24,9 @@ const Footer = () => {
 
             <div class="rightFooter">
                 <h4>Siga-nos</h4>
-                <a href="#insta">Instagram</a>
-                <a href="#you">Youtube</a>
-                <a href="#face">Facebook</a>
+                <a href="#insta">Instagram <CgInstagram /></a>
+                <a href="#you">Youtube <CgYoutube /></a>
+                <a href="#face">Facebook <CgFacebook /></a>
             </div>
         </footer>
     );

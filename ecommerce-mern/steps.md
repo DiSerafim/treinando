@@ -29,5 +29,10 @@ npm i axios react-alert react-alert-template-basic react-helmet react-redux redu
 
 npm install react-icons
 
-passo a passo do avbar:
+passo a passo do navbar:
 https://www.npmjs.com/package/overlay-navbar
+
+npm i react-rating-stars-component
+
+<!-- extensão no chrome -->
+https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd

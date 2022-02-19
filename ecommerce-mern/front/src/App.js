@@ -19,7 +19,6 @@ function App() {
     <Router>
       <Header />
       <Route extact path="/" component={Home} />
-
       <Footer />
     </Router>
   )

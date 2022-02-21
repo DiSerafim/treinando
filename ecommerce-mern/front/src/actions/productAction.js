@@ -4,9 +4,13 @@ import {
     ALL_PRODUCT_FAIL,
     ALL_PRODUCT_REQUEST,
     ALL_PRODUCT_SUCCESS,
-    CLEAR_ERROS,
+    PRODUCT_DETAILS_REQUEST,
+    PRODUCT_DETAILS_SUCCESS,
+    PRODUCT_DETAILS_FAIL,
+    CLEAR_ERRORS,
 } from "../constants/productConstants";
 
+// exibe os produtos
 export const getProduct = () => async (dispatch) => {
     try {
         dispatch({
@@ -25,9 +29,28 @@ export const getProduct = () => async (dispatch) => {
     }
 };
 
+// Detalhes do produto
+export const getProductDetails = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: PRODUCT_DETAILS_REQUEST,
+        });
+        const { data } = await axios.get(`/api/v1/product/${id}`);
+        dispatch({
+            type: PRODUCT_DETAILS_SUCCESS,
+            payload: data.product,
+        });
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_DETAILS_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
 // Limpando erros
 export const clearErrors = () => async (dispatch) => {
     dispatch({
-        type: CLEAR_ERROS,
+        type: CLEAR_ERRORS,
     });
 };

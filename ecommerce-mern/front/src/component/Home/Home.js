@@ -20,10 +20,10 @@ const Home = () => {
             return alert.error(error);
         }
         dispatch(getProduct());
-    }, [dispatch, error]);
+    }, [dispatch, error, alert]);
 
     return (
-        <fragment>
+        <Fragment>
             {loading ? (
                 <Loader />
             ) : (
@@ -46,9 +46,9 @@ const Home = () => {
                     <div className="container" id="container">
                         { products && products.map((product) => <Product product={ product } />) }
                     </div>
-                </ Fragment>
+                </Fragment>
             )}
-        </fragment>
+        </Fragment>
     );
 };
 

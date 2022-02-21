@@ -4,6 +4,7 @@ import Footer from "./component/layout/Footer/Footer";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import webFont from "webfontloader";
 import Home from "./component/Home/Home";
+import ProductDetails from "./component/Product/ProductDetails";
 import './App.css';
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
   return (
     <Router>
       <Header />
-      <Route extact path="/" component={Home} />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/product/:id" component={ProductDetails} />
       <Footer />
     </Router>
   )

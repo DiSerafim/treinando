@@ -65,7 +65,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
 });
 
 // obtem detalhes de um produto
-exports.getProductDeails = catchAsyncErrors(async (req, res, next) => {
+exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.params.id);
     if (!product) {
         return next(new ErrorHander("Produto não encontrado", 404));
@@ -73,11 +73,10 @@ exports.getProductDeails = catchAsyncErrors(async (req, res, next) => {
     res.status(200).json({
         success: true,
         product,
-        productCount,
     });
 });
 
-// Criar nova avaliação ou atualizar a avaliação
+// Criar nova avaliação ou atualiza a avaliação
 exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
     const { rating, comment, productId } = req.body;
     const review = {

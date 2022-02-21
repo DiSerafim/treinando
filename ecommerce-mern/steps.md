@@ -36,3 +36,7 @@ npm i react-rating-stars-component
 
 <!-- extensão no chrome -->
 https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
+
+<!-- carrossel -->
+npm i react-material-ui-caroussel
+npm install @material-ui/core

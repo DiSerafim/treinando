@@ -21,7 +21,7 @@ const Search = ({ history }) => {
                     placeholder="Pesquisar ..."
                     onChange={(e) => setkeyword(e.target.value)}
                 />
-                <input type="submit" value="→" />
+                <input type="submit" value="🔍" />
             </form>
         </Fragment>
     );

@@ -1,13 +1,13 @@
 import React, { Fragment, useEffect, useState } from "react";
+import "./Products.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import Loader from "../layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
 import Slider from "@material-ui/core/Slider";
-import Typography from "@material-ui/core/Typography";
 import { useAlert } from "react-alert";
-import "./Products.css";
+import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
 
 
@@ -45,7 +45,7 @@ const Products = ({ match }) => {
     };
 
     const priceHandler = (event, newPrice) => {
-        setPrice(newPrice);
+        setPrice(event.newPrice);
     };
 
     useEffect(() => {
@@ -70,14 +70,13 @@ const Products = ({ match }) => {
                         {products &&
                             products.map((product) => (
                                 <ProductCard key={product._id} product={product} />
-                            ))
-                        }
+                            ))}
                     </div>
                     
                     {/* filtragem */}
                     <div className="filterBox">
                         {/* Preço */}
-                        <Typography>Preços🔎</Typography>
+                        <Typography>Preços 🔎</Typography>
                         <Slider
                             value={price}
                             onChange={priceHandler}

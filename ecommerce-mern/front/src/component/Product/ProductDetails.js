@@ -3,7 +3,7 @@ import Carousel from "react-material-ui-carousel";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProductDetails } from "../../actions/productAction";
 import ReactStars from "react-rating-stars-component";
-import ReviewCard from "./ReviewCard.js";
+import ReviewCard from "./ReviewCard";
 import Loader from "../layout/Loader/Loader"
 import { useAlert } from "react-alert";
 import "./ProductDetails.css";
@@ -11,6 +11,7 @@ import "./ProductDetails.css";
 const ProductDetails = ({ match }) => {
     const dispatch = useDispatch();
     const alert = useAlert();
+
     const { product, loading, error } = useSelector(
         (state) => state.productDetails
     );
@@ -21,7 +22,7 @@ const ProductDetails = ({ match }) => {
             dispatch(clearErrors());
         }
         dispatch(getProductDetails(match.params.id));
-    }, [dispatch, match.params.id, alert, error]);
+    }, [dispatch, match.params.id, error, alert]);
 
     const options = {
         edit: false,
@@ -77,7 +78,7 @@ const ProductDetails = ({ match }) => {
                                 <p>
                                     Status:{" "}
                                     <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
-                                        { product.Stock < 1 ? "Esgotado" : "Estoque" }
+                                        { product.Stock < 1 ? "Esgotado" : "Em Estoque" }
                                     </b>
                                 </p>
                             </div>

@@ -6,7 +6,7 @@ import webFont from "webfontloader";
 import Home from "./component/Home/Home";
 import ProductDetails from "./component/Product/ProductDetails";
 import Products from "./component/Product/Products";
-import Search from "./component/Product/Search.js";
+import Search from "./component/Product/Search";
 
 import './App.css';
 

@@ -18,21 +18,31 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
     });
 });
 
-// Pega todos produtos
-exports.getAllProducts = catchAsyncErrors(async (req, res) => {
-    const resultPerPage = 8;
-    const productCount = await Product.countDocuments();
+// Pega todos produtos (paginação)
+exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
+    const resultPerPage = 4;
+    const productsCount = await Product.countDocuments();
+  
     const apiFeature = new ApiFeatures(Product.find(), req.query)
-    .search()
-    .filter()
-    .pagination(resultPerPage);
-    const products = await apiFeature.query;
+      .search()
+      .filter();
+  
+    let products = await apiFeature.query.clone();
+  
+    let filteredProductsCount = products.length;
+  
+    apiFeature.pagination(resultPerPage);
+  
+    products = await apiFeature.query;
+  
     res.status(200).json({
-        success: true,
-        products,
-        productCount,
+      success: true,
+      products,
+      productsCount,
+      resultPerPage,
+      filteredProductsCount,
     });
-});
+  });
 
 // Atualiza um produto -- admin
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
@@ -65,7 +75,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
 });
 
 // obtem detalhes de um produto
-exports.getProductDeails = catchAsyncErrors(async (req, res, next) => {
+exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.params.id);
     if (!product) {
         return next(new ErrorHander("Produto não encontrado", 404));
@@ -73,11 +83,10 @@ exports.getProductDeails = catchAsyncErrors(async (req, res, next) => {
     res.status(200).json({
         success: true,
         product,
-        productCount,
     });
 });
 
-// Criar nova avaliação ou atualizar a avaliação
+// Criar nova avaliação ou atualiza a avaliação
 exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
     const { rating, comment, productId } = req.body;
     const review = {

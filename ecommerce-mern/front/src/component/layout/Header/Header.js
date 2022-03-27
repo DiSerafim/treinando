@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import { ReactNavbar } from "overlay-navbar";
 import logo from "../../../images/logo-e-commerce.png";
 
@@ -9,12 +9,12 @@ const options = {
     navColor1:"#ccc",
     logoHoverSize:"10px",
     logoHoverColor:"#eb4034",
-    link1Text:"Home",
-    link2Text:"Product",
-    link3Text:"Contact",
-    link4Text:"About",
+    link1Text:"Início",
+    link2Text:"Produtos",
+    link3Text:"Contato",
+    link4Text:"Sobre nós",
     link1Url:"/",
-    link2Url:"/product",
+    link2Url:"/products",
     link3Url:"/contact",
     link4Url:"/about",
     link1Size:"1.3vmax",
@@ -40,4 +40,4 @@ const Header = () => {
     );
 };
 
-export default Header
+export default Header;

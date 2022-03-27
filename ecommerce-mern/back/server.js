@@ -15,11 +15,9 @@ process.on("uncaughtException", (err) => {
     process.exit(1);
 });
 
-const port = process.env.PORT || 3001;
-
-const server = app.listen(port, () => {
-    console.log(`Servidor na porta: ${port}`);
-});
+const server = app.listen(process.env.PORT, () => {
+    console.log(`Server is working on http://localhost:${process.env.PORT}`);
+  });
 
 // rejeição de promessa não tratada
 process.on("unhandledRejection", (err) => {

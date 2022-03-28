@@ -1,29 +1,37 @@
 const app = require("./app");
-const dotenv = require("dotenv");
+const cloudinary = require("cloudinary");
 const connectDatabase = require("./config/database");
 
+// Handling Uncaught Exception
+process.on("uncaughtException", (err) => {
+  console.log(`Error: ${err.message}`);
+  console.log(`Shutting down the server due to Uncaught Exception`);
+  process.exit(1);
+});
+
 // config
-dotenv.config({ path: "back/config/config.env" });
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  require("dotenv").config({ path: "back/config/config.env" });
+}
 
 // conecting to database
 connectDatabase();
 
-// lidando com exceção não capturada
-process.on("uncaughtException", (err) => {
-    console.log(`Error: ${err.message}`);
-    console.log(`Desligando o servidor devido a uma exceção não detectada`);
-    process.exit(1);
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const server = app.listen(process.env.PORT, () => {
-    console.log(`Server is working on http://localhost:${process.env.PORT}`);
-  });
+  console.log(`Server is working on http://localhost:${process.env.PORT}`);
+});
 
 // rejeição de promessa não tratada
 process.on("unhandledRejection", (err) => {
-    console.log(`Error: ${err.message}`);
-    console.log(`Desligando o servidor devido à rejeição da promessa não tratada`);
-    server.close(() => {
-        process.exit(1);
-    });
+  console.log(`Error: ${err.message}`);
+  console.log(`Desligando o servidor devido à rejeição da promessa não tratada`);
+  server.close(() => {
+    process.exit(1);
+  });
 });

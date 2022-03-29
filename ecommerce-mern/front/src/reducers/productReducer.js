@@ -8,7 +8,6 @@ import {
     CLEAR_ERRORS,
 } from "../constants/productConstants";
 
-
 export const productReducer = (state = { products: [] }, action) => {
     switch (action.type) {
         case ALL_PRODUCT_REQUEST:

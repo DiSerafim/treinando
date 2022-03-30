@@ -16,9 +16,9 @@ input[type="number"] {
 }
 
 .greenColor {
-    color: green;
+    color: #274;
 }
 
 .redColor {
-    color: red;
+    color: rgb(180, 1, 1);
 }

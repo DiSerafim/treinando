@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(231, 231, 231);
+    background-color: rgba(231, 231, 231);
     position: fixed;
     top: 0%;
     left: 0%;
@@ -15,31 +15,31 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.274);
     background-color: white;
     border: none;
-    border-radius: 2vmax;
+    /* border-bottom-left-radius: 2vmax; */
+    border-radius: 2vmax 0 0 2vmax;
     color: rgba(0, 0, 0, 0.637);
     padding: 1vmax 2vmax;
     width: 50%;
     outline: none;
-    font: 200 1vmax cursive;
+    font: 300 1vmax cursive;
     box-sizing: border-box;
     height: 8%;
 }
 
 .searchBox > input[type="submit"] {
     height: 8%;
-    border-radius: 2vmax;
+    border-radius: 0 2vmax 2vmax 0;
     background-color: tomato;
     border: none;
-    padding: 0;
-    width: 4%;
-    margin-left: 1vmax;
-    font: 300 3vmax "Roboto";
+    padding: 1vmax;
+    width: 10%;
+    font: 300 2vmax "Roboto";
     cursor: pointer;
     color: white;
     transition: all 0.5s;
 }
 
 .searchBox > input[type="submit"]:hover {
-    background-color: #ccc;
-    color: tomato;
+    font: 300 3vmax "Roboto";
+    transition: 1s;
 }

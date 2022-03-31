@@ -18,6 +18,10 @@
   border: 1px solid white;
 }
 
+.ProductDetails > Carousel {
+  width: 500px;
+}
+
 .ProductDetails > div:last-child {
   align-items: flex-start;
 }

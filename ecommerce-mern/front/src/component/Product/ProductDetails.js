@@ -1,13 +1,11 @@
 import React, { Fragment, useEffect } from "react";
 import Carousel from "react-material-ui-carousel";
 import { useSelector, useDispatch } from "react-redux";
-
 import { clearErrors, getProductDetails } from "../../actions/productAction";
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard";
 import Loader from "../layout/Loader/Loader"
 import { useAlert } from "react-alert";
-
 import "./ProductDetails.css";
 
 const ProductDetails = ({ match }) => {
@@ -63,7 +61,7 @@ const ProductDetails = ({ match }) => {
                                 <p># {product._id}</p>
                             </div>
                             <div className="detailsBlock-2">
-                                <ReactStars {...options} />
+                                <ReactStars { ...options } />
                                 <span>{ product.numOfReviews }</span>
                             </div>
                             <div className="detailsBlock-3">

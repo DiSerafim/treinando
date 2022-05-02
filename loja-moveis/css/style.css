@@ -12,19 +12,20 @@
   transition:.2s linear;
 }
 
-/* $border:.1em solid $green;
-$box-shadow:0 .5rem 1rem rgba(0 , 0 , 0 , .1);
-$dark-shadow:0 0 0 100vw rgba(0 , 0 , 0 , .1);
-$green:#244d4d;
-$light-bt:#f6fbf6;
-$light-color:#779;
-$white:#fff; */
+/* $border: .1em solid $green;
+$box-shadow: 0 .5rem 1rem rgba(0 , 0 , 0 , .1);
+$dark-shadow: 0 0 0 100vw rgba(0 , 0 , 0 , .1);
+$green: #244d4d;
+$light-bg: #f6fbf6;
+$light-color: #779;
+$white: #fff;
+ */
 
-/* @mixin grid($val) {
+@mixin grid($val) {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
-  gap:1.5rem;
-}; */
+  gap: 1.5rem;
+};
 
 html {
   font-size: 62.5%;
@@ -43,13 +44,41 @@ html::-webkit-scrollbar-thumb {
   background: #244d4d;
 }
 
-.logo {
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .9rem 3rem;
+  width: 100%;
+  text-align: center;
+  font-size: 1.7rem;
+  background-color: #244d4d;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #316868;
+}
+
+.header {
+  align-items: center;
+  background-color: #f6fbf6;
+  display: flex;
+  justify-content: space-between;
+  left: 0; right: 0; top: 0;
+  padding: 2rem 9%;
+  position: sticky;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+}
+
+.header .logo {
   font-size: 2.5rem;
   color: #244d4d;
   font-weight: bolder;
 }
 
-i {
+.header .logo i {
   padding-right: .3rem;
 }
 
@@ -64,7 +93,7 @@ i {
   border: .1em solid #244d4d;
 }
 
-input {
+.search-form input {
   height: 100%;
   width: 100%;
   padding: 0 1.2rem;
@@ -73,14 +102,14 @@ input {
   text-transform: none;
 }
 
-label {
-  font-size: 2.2rem;
+.search-form label {
+  font-size: 3rem;
   padding-right: 1.7rem;
   cursor: pointer;
   color: #244d4d;
 }
 
-label:hover {
+.search-form label:hover {
   color: #779;
 }
 
@@ -98,17 +127,6 @@ label:hover {
   background: #316868;
 }
 
-.header {
-  align-items: center;
-  background-color: #f6fbf6;
-  display: flex;
-  justify-content: space-between;
-  left: 0; right: 0; top: 0;
-  padding: 2rem 9%;
-  position: sticky;
-  z-index: 100;
-}
-  
 .icons div {
   margin-left: 2rem;
   font-size: 2.5rem;
@@ -123,6 +141,8 @@ label:hover {
 #search-btn {
   display: none;
 }
+
+/* navbar */
 
 @keyframes rotate {
   0% {
@@ -147,6 +167,7 @@ label:hover {
 }
 
 .navbar {
+  /* box-shadow: 0 0 0 100vw rgba(0 , 0 , 0 , .1); */
   position: fixed;
   top: 0; right: -101%;
   z-index: 1000;
@@ -215,7 +236,8 @@ a:hover {
 
 .shopping-cart .box .fa-times {
   position: absolute;
-  top: 50%; right: 2rem;
+  top: 50%;
+  right: 2rem;
   transform: translateY(-50%);
   font-size: 2rem;
   color: #779;
@@ -261,6 +283,8 @@ a:hover {
   text-align: center;
 }
 
+/* form-login */
+
 .login-form {
   position: fixed;
   top: 0; right: -101%;
@@ -281,7 +305,7 @@ a:hover {
 }
 
 .login-form form {
-  padding: 1.7rem;
+  padding: 2rem;
   border: .1em solid #244d4d;
 }
 
@@ -318,29 +342,9 @@ a:hover {
   margin: 1rem 0;
   width: 100%;
   text-align: center;
-  padding: .9rem 3rem;
-  font-size: 1.7rem;
-  background: #244d4d;
-  color: #fff;
-  cursor: pointer;
 }
 
-.login-form .btn:hover {
-  background: #316868;
-}
-
-.btn {
-  margin: 1rem 0;
-  width: 100%;
-  text-align: center;
-  padding: .9rem 3rem;
-  font-size: 1.7rem;
-  background: #244d4d;
-  color: #fff;
-  cursor: pointer;
-}
-
-.btn:hover {
+.login-form form .btn:hover {
   background: #316868;
 }
 
@@ -351,7 +355,6 @@ a:hover {
 }
 
 .login-form form p a {
-  padding-top: 1rem;
   font-size: 1.4rem;
   color: #244d4d;
 }
@@ -366,6 +369,7 @@ a:hover {
   html {
     font-size: 55%;
   }
+  
   .header {
     padding: 2rem;
   }
@@ -375,6 +379,7 @@ a:hover {
   #search-btn {
     display: inline-block;
   }
+
   .header .search-form {
     position: absolute;
     top: -101%; left: 0; right: 0;

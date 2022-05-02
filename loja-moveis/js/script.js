@@ -1,3 +1,4 @@
+// navbar btn-close
 let closer = document.querySelector('#closer');
 closer.onclick = () => {
   closer.style.display = 'none';
@@ -29,6 +30,6 @@ document.querySelector('#search-btn').onclick = () => {
   searchForm.classList.toggle('active');
 };
 
-window.scroll = () => {
-  searchForm.classList.toggle('active');
+window.onscroll = () => {
+  searchForm.classList.remove('active');
 }

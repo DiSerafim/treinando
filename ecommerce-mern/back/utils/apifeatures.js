@@ -14,12 +14,13 @@ class ApiFeatures {
             },
           }
         : {};
-  
+        console.log(keyword)
       this.query = this.query.find({ ...keyword });
       return this;
     }
   
     filter() {
+      
       const queryCopy = { ...this.queryStr };
       // Removendo alguns campos da categoria
       const removeFields = ["keyword", "page", "limit"];

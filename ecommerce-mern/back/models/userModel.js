@@ -45,6 +45,7 @@ const userSchema = new mongoose.Schema({
   resetPasswordExpire: Date,
 });
 
+// Encripta senha - bcrypt
 userSchema.pre("save", async function(next) {
   if (!this.isModified("password")) {
     next();

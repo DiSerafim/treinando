@@ -16,19 +16,21 @@
     background-color: white;
     border: none;
     /* border-bottom-left-radius: 2vmax; */
-    border-radius: 2vmax 0 0 2vmax;
+    /* border-radius: 2vmax 0 0 2vmax; */
+    border-radius: 0%;
     color: rgba(0, 0, 0, 0.637);
     padding: 1vmax 2vmax;
     width: 50%;
     outline: none;
-    font: 300 1vmax cursive;
+    font: 300 1.1vmax cursive;
     box-sizing: border-box;
     height: 8%;
 }
 
 .searchBox > input[type="submit"] {
     height: 8%;
-    border-radius: 0 2vmax 2vmax 0;
+    /* border-radius: 0 2vmax 2vmax 0; */
+    border-radius: 0%;
     background-color: tomato;
     border: none;
     padding: 1vmax;

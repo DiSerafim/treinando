@@ -22,6 +22,11 @@ D - delete
 
 - npm run dev (starta o localhost)
 
+<!-- cloudinary -->
+npm i express-fileupload cloudinary
+
+
+
 <!-- FRONT END -->
 npx create-react-app .
 npm start

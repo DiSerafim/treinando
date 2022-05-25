@@ -1,22 +1,24 @@
 const app = require("./app");
+const dotenv = require("dotenv");
 const cloudinary = require("cloudinary");
 const connectDatabase = require("./config/database");
 
-// Handling Uncaught Exception
+// Lidando com exceção não capturada
 process.on("uncaughtException", (err) => {
   console.log(`Error: ${err.message}`);
-  console.log(`Shutting down the server due to Uncaught Exception`);
+  console.log(`Desligando o servidor devido a uma exceção não capturada`);
   process.exit(1);
 });
 
-// config
+// configuração
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({ path: "back/config/config.env" });
 }
 
-// conecting to database
+// conectando ao banco de dados
 connectDatabase();
 
+// upload de arquivo express cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,

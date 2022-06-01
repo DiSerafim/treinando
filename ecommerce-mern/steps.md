@@ -45,3 +45,6 @@ https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfk
 <!-- carrossel -->
 npm i react-material-ui-caroussel
 npm install @material-ui/core
+
+npm i @material-ui/lab
+

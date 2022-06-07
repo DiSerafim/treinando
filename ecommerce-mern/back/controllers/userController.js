@@ -65,10 +65,8 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   // Obter token de redefinição de senha
   const resetToken = user.getResetPasswordToken();
   await user.save({ validateBeforeSave: false });
-  const resetPasswordUrl = `${req.protocol}://${req.get(
-    "host"
-  )}/password/reset/${resetToken}`;
-  const message = `Seu token de redefinição de senha é :- \n\n ${resetPasswordUrl} \n\nse você não solicitou este e-mail, por favor, ignore-o`;
+  const resetPasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
+  const message = `Seu token de redefinição de senha é :- \n\n ${resetPasswordUrl} \n\nse você não solicitou este e-mail, por favor, ignore-o ^-^`;
   try {
     await sendEmail({
       email: user.email,
@@ -155,7 +153,6 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 
   if (req.body.avatar !== "") {
     const user = await User.findById(req.user.id);
-
     const imageId = user.avatar.public_id;
 
     await cloudinary.v2.uploader.destroy(imageId);
@@ -171,7 +168,7 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
       url: myCloud.secure_url,
     };
   }
-  // vamos adicionar cloudinary
+
   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,
     runValidators: true,

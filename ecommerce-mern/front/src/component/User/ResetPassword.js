@@ -1,34 +1,33 @@
 import React, { Fragment, useState, useEffect } from "react";
-import "./UpdatePassword.css";
+import "./ResetPassword.css";
 import Loader from "../layout/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, updatePassword } from "../../actions/userAction";
+import { clearErrors, resetPassword } from "../../actions/userAction";
 import { useAlert } from "react-alert";
-import { UPDATE_PASSWORD_RESET } from "../../constants/userConstants";
 import MetaData from "../layout/MetaData";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import LockIcon from "@material-ui/icons/Lock";
-import VpnKeyIcon from "@material-ui/icons/VpnKey";
 
-const UpdatePassword = ({ history }) => {
+
+const ResetPassword = ({ history, match }) => {
     const dispatch = useDispatch();
     const alert = useAlert();
 
-    const { error, isUpdated, loading } = useSelector((state) => state.profile);
+    const { error, success, loading } = useSelector(
+        (state) => state.forgotPassword
+    );
 
-    const [oldPassword, setOldPassword] = useState("");
-    const [newPassword, setNewPassword] = useState("");
+    const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const updatePasswordSubmit = (e) => {
+    const resetPasswordSubmit = (e) => {
         e.preventDefault();
         const myForm = new FormData();
 
-        myForm.set("oldPassword", oldPassword);
-        myForm.set("newPassword", newPassword);
+        myForm.set("password", password);
         myForm.set("confirmPassword", confirmPassword);
 
-        dispatch(updatePassword(myForm));
+        dispatch(resetPassword(match.params.token, myForm));
     };
 
     useEffect (() => {
@@ -36,45 +35,32 @@ const UpdatePassword = ({ history }) => {
             alert.error(error);
             dispatch(clearErrors());
         }
-        if (isUpdated) {
-            alert.success("Senha modificada!");
-            history.push("/account");
-            dispatch({
-                type: UPDATE_PASSWORD_RESET,
-            });
+        if (success) {
+            alert.success("Senha Atualizada!");
+            history.push("/login");
         }
-    }, [dispatch, error, alert, history, isUpdated]);
+    }, [dispatch, error, alert, history, success]);
 
     return (
         <Fragment>
             {loading ? (<Loader />) : (
                 <Fragment>
                     <MetaData title="Alterar Senha" />
-                    <div className="updatePasswordContainer">
-                        <div className="updatePasswordBox">
-                            <h2 className="updatePasswordHeading">Alterar Senha</h2>
+                    <div className="resetPasswordContainer">
+                        <div className="resetPasswordBox">
+                            <h2 className="resetPasswordHeading">Alterar Senha</h2>
                             <form
-                                className="updatePasswordForm"
-                                onSubmit={updatePasswordSubmit}
+                                className="resetPasswordForm"
+                                onSubmit={resetPasswordSubmit}
                             >
-                                <div className="loginPassword">
-                                    <VpnKeyIcon />
-                                    <input
-                                        type="password"
-                                        placeholder="Senha antiga"
-                                        required
-                                        value={oldPassword}
-                                        onChange={ (e) => setOldPassword(e.target.value) }
-                                    />
-                                </div>
                                 <div className="loginPassword">
                                     <LockOpenIcon />
                                     <input
                                         type="password"
                                         placeholder="Nova Senha"
                                         required
-                                        value={newPassword}
-                                        onChange={ (e) => setNewPassword(e.target.value) }
+                                        value={password}
+                                        onChange={ (e) => setPassword(e.target.value) }
                                     />
                                 </div>
                                 <div className="loginPassword">
@@ -88,9 +74,9 @@ const UpdatePassword = ({ history }) => {
                                     />
                                 </div>
                                 <input
-                                    className="updatePasswordBtn"
+                                    className="resetPasswordBtn"
                                     type="submit"
-                                    value="Alterar senha!"
+                                    value="Atualizar"
                                 />
                             </form>
                         </div>
@@ -101,4 +87,4 @@ const UpdatePassword = ({ history }) => {
     );
 }
 
-export default UpdatePassword;
+export default ResetPassword;

@@ -65,10 +65,8 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   // Obter token de redefinição de senha
   const resetToken = user.getResetPasswordToken();
   await user.save({ validateBeforeSave: false });
-  const resetPasswordUrl = `${req.protocol}://${req.get(
-    "host"
-  )}/password/reset/${resetToken}`;
-  const message = `Seu token de redefinição de senha é :- \n\n ${resetPasswordUrl} \n\nse você não solicitou este e-mail, por favor, ignore-o`;
+  const resetPasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
+  const message = `Seu token de redefinição de senha é :- \n\n ${resetPasswordUrl} \n\nse você não solicitou este e-mail, por favor, ignore-o ^-^`;
   try {
     await sendEmail({
       email: user.email,

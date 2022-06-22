@@ -36,8 +36,8 @@ const ForgotPassword = () => {
 
     return (
         <Fragment>
-            { loading ? <Loader /> : 
-                <Fragment>
+            { loading ? (<Loader />) : 
+                (<Fragment>
                     <MetaData title="Recuperar senha'" />
                     <div className="forgotPasswordContainer">
                         <div className="forgotPasswordBox">
@@ -61,7 +61,7 @@ const ForgotPassword = () => {
                             </form>
                         </div>
                     </div>
-                </Fragment>
+                </Fragment>)
             }
         </Fragment>
     );

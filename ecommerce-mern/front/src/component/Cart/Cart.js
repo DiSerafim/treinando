@@ -7,6 +7,10 @@ import { Typography } from "@material-ui/core";
 import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
 import { Link } from "react-router-dom";
 
+
+// 10:35:45
+
+
 const Cart = () => {
     const dispatch = useDispatch();
     const { cartItems } = useSelector((state) => state.cart);
@@ -84,7 +88,9 @@ const Cart = () => {
                             <div></div>
                             <div className="cartGrossTotalBox">
                                 <p>Total</p>
-                                <p>{`R$1200`}</p>
+                                <p>{`R$${cartItems.reduce(
+                                    (acc, item) => acc + item.quantity * item.price, 0
+                                )}`}</p>
                             </div>
                             <div></div>
                             <div className="checkOutBtn">

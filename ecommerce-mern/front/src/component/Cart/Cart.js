@@ -45,7 +45,7 @@ const Cart = () => {
             {cartItems.length === 0 ? (
                 <div className="emptyCart">
                     <RemoveShoppingCartIcon />
-                    <Typography>Carrinho Vázio</Typography>
+                    <Typography>Carrinho Vazio</Typography>
                     <Link to="/products">Ver Produtos</Link>
                 </div>
                 ) : (
@@ -72,10 +72,10 @@ const Cart = () => {
                             <div className="cartContainer" key={item.product}>
                                 <CartItemCard item={item} deleteCartItems={deleteCartItems} />
                                 <div className="cartIput">
-                                    <button>-</button>
-                                    <input type="number" value={item.quantity} readOnly />
-                                    <button>+</button>
-                                </div>
+                                <button onClick={() => decreaseQuantity(item.product, item.quantity)}>-</button>
+                                <input type="number" value={item.quantity} readOnly />
+                                <button onClick={() => increaseQuantity(item.product, item.quantity, item.stock)}>+</button>
+                            </div>
                                 <p className="cartSubtotal">{`R$${item.price * item.quantity}`}</p>
                             </div>
                         ))}

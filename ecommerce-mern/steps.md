@@ -25,6 +25,8 @@ D - delete
 <!-- cloudinary -->
 npm i express-fileupload cloudinary
 
+<!-- stripe payment -->
+npm i stripe
 
 
 <!-- FRONT END -->
@@ -48,3 +50,7 @@ npm install @material-ui/core
 
 npm i @material-ui/lab
 
+npm i country-state-city
+
+<!-- stripe payment -->
+npm install @stripe/react-stripe-js @stripe/stripe-js

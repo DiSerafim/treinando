@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 // 10:35:45
 
 
-const Cart = () => {
+const Cart = ({ history }) => {
     const dispatch = useDispatch();
     const { cartItems } = useSelector((state) => state.cart);
 
@@ -31,18 +31,13 @@ const Cart = () => {
         dispatch(addItemsToCart(id, newQty));
     }
 
-    // só desmarque para modelo de visualização
-    // const item = {
-    //     product: "productID",
-    //     price: 200,
-    //     name: "Junior",
-    //     quantity: 2,
-    //     image: "https://i.ibb.co/DRST11n/1.webp",
-    // };
-
     const deleteCartItems = (id) => {
         dispatch(removeItemsFromCart(id));
     };
+
+    const checkoutHandler = () => {
+        history.push("/login?redirect=shipping");
+    }
 
     return (
         <Fragment>
@@ -60,17 +55,6 @@ const Cart = () => {
                             <p>Quantidade</p>
                             <p>Subtotal</p>
                         </div>
-                        
-                        {/* só desmarque para modelo de visualização */}
-                        {/* <div className="cartContainer">
-                            <CartItemCard item={item} />
-                            <div className="cartIput">
-                                <button onClick={() => decreaseQuantity(item.product, item.quantity)}>-</button>
-                                <input type="number" value={item.quantity} readOnly />
-                                <button onClick={() => increaseQuantity(item.product, item.quantity, item.stock)}>+</button>
-                            </div>
-                            <p className="cartSubtotal">{`R$${item.price * item.quantity}`}</p>
-                        </div> */}
 
                         {cartItems && cartItems.map((item) => (
                             <div className="cartContainer" key={item.product}>
@@ -94,7 +78,7 @@ const Cart = () => {
                             </div>
                             <div></div>
                             <div className="checkOutBtn">
-                                <button>Verificação de saída</button>
+                                <button onClick={checkoutHandler}>Verificação de saída</button>
                             </div>
                         </div>
                     </div>

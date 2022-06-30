@@ -11,9 +11,7 @@ process.on("uncaughtException", (err) => {
 });
 
 // configuração
-if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({ path: "back/config/config.env" });
-}
+dotenv.config({ path: "back/config/config.env" });
 
 // conectando ao banco de dados
 connectDatabase();
@@ -26,7 +24,7 @@ cloudinary.config({
 });
 
 const server = app.listen(process.env.PORT, () => {
-  console.log(`Server is working on http://localhost:${process.env.PORT}`);
+  console.log(`Servidor funcionando na porta http://localhost:${process.env.PORT}`);
 });
 
 // rejeição de promessa não tratada

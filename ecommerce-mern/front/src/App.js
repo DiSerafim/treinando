@@ -28,6 +28,10 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./component/Cart/OrderSuccess.js";
 
+
+// 11:41:06
+
+
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
@@ -80,6 +84,9 @@ function App() {
       )}
 
       <ProtectedRoute exact path="/success" component={OrderSuccess} />
+
+
+
 
       <Footer />
     </Router>

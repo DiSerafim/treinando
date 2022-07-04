@@ -5,12 +5,15 @@ import {
     MY_ORDERS_FAIL,
     MY_ORDERS_REQUEST,
     MY_ORDERS_SUCCESS,
+    ORDERS_DETAILS_FAIL,
+    ORDERS_DETAILS_REQUEST,
+    ORDERS_DETAILS_SUCCESS,
     CLEAR_ERRORS,
 } from "../constants/orderConstants";
 import axios from "axios";
 
 // Criar pedido
-export const createOrder = (order) => async (dispatch, getState) => {
+export const createOrder = (order) => async (dispatch) => {
     try {
         dispatch({ type: CREATE_ORDER_REQUEST });
         const config = {
@@ -29,7 +32,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
 };
 
 // Meus pedidos
-export const myOrders = () => async (dispatch, getState) => {
+export const myOrders = () => async (dispatch) => {
     try {
         dispatch({ type: MY_ORDERS_REQUEST });
         const { data } = await axios.get("/api/v1/orders/me");
@@ -41,6 +44,21 @@ export const myOrders = () => async (dispatch, getState) => {
         });
     }
 };
+
+// detalhes do pedido(compra)
+export const getOrderDetails = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: ORDERS_DETAILS_REQUEST });
+        const { data } = await axios.get(`/api/v1/order/${id}`);
+        dispatch({ type: ORDERS_DETAILS_SUCCESS.at, payload: data.order });
+    } catch (error) {
+        dispatch({
+            type: ORDERS_DETAILS_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
 
 // Limpando erros
 export const clearErros = () => async (dispatch) => {

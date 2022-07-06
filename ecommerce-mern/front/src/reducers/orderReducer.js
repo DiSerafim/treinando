@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
     CREATE_ORDER_FAIL,
     CREATE_ORDER_REQUEST,
@@ -6,9 +5,13 @@ import {
     MY_ORDERS_FAIL,
     MY_ORDERS_REQUEST,
     MY_ORDERS_SUCCESS,
+    ORDERS_DETAILS_FAIL,
+    ORDERS_DETAILS_REQUEST,
+    ORDERS_DETAILS_SUCCESS,
     CLEAR_ERRORS,
 } from "../constants/orderConstants";
 
+// reducer novo pedido
 export const newOrderReducer = (state = {}, action) => {
     switch (action.type) {
         case CREATE_ORDER_REQUEST:
@@ -36,6 +39,7 @@ export const newOrderReducer = (state = {}, action) => {
     }
 };
 
+// reducer minhas compras
 export const myOrdersReducer = (state = { orders: [] }, action) => {
     switch (action.type) {
         case MY_ORDERS_REQUEST:
@@ -48,6 +52,33 @@ export const myOrdersReducer = (state = { orders: [] }, action) => {
                 orders: action.payload,
             };
         case MY_ORDERS_FAIL:
+            return {
+                loading: true,
+                error: action.payload,
+            };
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            };
+        default:
+            return state;
+    }
+};
+
+// reducer detalhes do pedido(compra)
+export const orderDetailsReducer = (state = { order: {} }, action) => {
+    switch (action.type) {
+        case ORDERS_DETAILS_REQUEST:
+            return {
+                loading: true,
+            };
+        case ORDERS_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                order: action.payload,
+            };
+        case ORDERS_DETAILS_FAIL:
             return {
                 loading: true,
                 error: action.payload,

@@ -69,7 +69,7 @@ const MyOrders = () => {
     const rows = [];
 
     orders &&
-        orders,forEach((item, index) => {
+        orders.forEach((item, index) => {
             rows.push({
                 itemsQty: item.orderItems.length,
                 id: item._id,

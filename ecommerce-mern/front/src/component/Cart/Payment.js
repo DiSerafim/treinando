@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import CheckoutSteps from "../Cart/CheckoutSteps";
 import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../layout/MetaData";
@@ -26,7 +26,7 @@ const Payment = ({ history }) => {
     const elements = useElements();
     const payBtn = useRef(null);
 
-    const { shippingInfo } = useSelector((state) => state.cart);
+    const { shippingInfo, cartItems } = useSelector((state) => state.cart);
     const { user } = useSelector((state) => state.user);
     const { error } = useSelector((state) => state.newOrder);
 
@@ -96,7 +96,7 @@ const Payment = ({ history }) => {
     useEffect(() => {
         if (error) {
             alert.error(error);
-            dispatch(clearErrors());
+            dispatch(clearErros());
         }
     }, [dispatch, error, alert]);
 

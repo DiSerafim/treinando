@@ -78,19 +78,18 @@
 }
 
 .productCard > img {
-    border: 1px solid #f1f1f9;
-    padding: 0.3vmax;
-    width: 21.9vmax;
+    width: 14vmax;
 }
 
 .productCard > div {
+    align-items: center;
     display: flex;
     justify-content: flex-start;
     margin: 0.5vmax;
 }
 
-.productCard > div > span {
-    font: 300 0.7vmax ""Roboto"";
+.productCardSpan {
+    font: 300 0.7vmax "Roboto";
     margin: 0.5vmax;
 }
 

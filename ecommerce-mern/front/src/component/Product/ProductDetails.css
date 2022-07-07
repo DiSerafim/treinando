@@ -50,10 +50,9 @@
   padding: 1vmax 0;
 }
 
-.detailsBlock-2 > span {
-  font: 400 0.9vmax cursive;
+.detailsBlock-2-span {
+  font: 200 0.8vmax cursive;
   color: rgba(0, 0, 0, 0.699);
-  margin-left: 6px;
 }
 
 .detailsBlock-3 {
@@ -147,6 +146,19 @@
 .submitReview:hover {
   background-color: rgb(197, 68, 45);
   transform: scale(1.1);
+}
+
+.submitDialog {
+  display: flex;
+  flex-direction: column;
+}
+
+.submitDialogTextArea {
+  border: 1px solid rgba(0, 0, 0, 0.082);
+  margin: 1vmax 0;
+  outline: none;
+  padding: 1rem;
+  font: 300 1rem "Roboto";
 }
 
 .reviewsHeading {

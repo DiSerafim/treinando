@@ -1,0 +1,44 @@
+.sidebar {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 0;
+}
+
+.sidebar > a:first-child {
+    padding: 0;
+}
+
+.sidebar > a > img {
+    width: 100%;
+    transition: all 0.5s;
+}
+
+.sidebar > a > img:hover {
+    filter: drop-shadow(0 0 10px tomato);
+}
+
+.sidebar a {
+    color: rgba(0, 0, 0, 0.49);
+    padding: 2rem;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+
+.sidebar a:hover {
+    color: tomato;
+    transform: scale(1.1);
+}
+
+.sidebar a > p {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar a > p > svg {
+    margin-right: 0.5rem;
+}
+
+.MuiTypograpkhy-root {
+    background-color: #fff !important;
+}

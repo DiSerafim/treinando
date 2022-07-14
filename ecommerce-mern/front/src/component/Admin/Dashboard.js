@@ -4,7 +4,8 @@ import "./Dashboard.css";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Doughnut, Line } from "react-chartjs-2";
-// 12:40:52
+
+// 12:53
 
 const Dashboard = () => {
     const lineState = {

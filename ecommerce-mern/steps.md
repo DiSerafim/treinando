@@ -56,3 +56,10 @@ npm i country-state-city
 
 <!-- stripe payment -->
 npm install @stripe/react-stripe-js @stripe/stripe-js
+
+<!-- Uninstall -->
+npm uninstall react-rating-stars-component
+
+<!-- ... -->
+npm i chart.js react-chartjs-2
+

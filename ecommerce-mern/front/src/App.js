@@ -23,12 +23,15 @@ import Cart from "./component/Cart/Cart";
 import Shipping from "./component/Cart/Shipping";
 import ConfirmOrder from "./component/Cart/ConfirmOrder";
 import axios from "axios";
-import Payment from "./component/Cart/Payment.js";
+import Payment from "./component/Cart/Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./component/Cart/OrderSuccess";
-import MyOrders from "./component/Order/MyOrders.js";
+import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails";
+import Dashboard from "./component/Admin/Dashboard";
+import ProductList from "./component/Admin/ProductList";
+import NewProduct from "./component/Admin/NewProduct";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -87,6 +90,10 @@ function App() {
         <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
         <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
       </Switch>
+
+      <ProtectedRoute isAdmin={true} exact path="/admin/dashboard" component={Dashboard} />
+      <ProtectedRoute exact path="/admin/products" isAdmin={true} component={ProductList} />
+      <ProtectedRoute exact path="/admin/product" isAdmin={true} component={NewProduct} />
 
       <Footer />
     </Router>

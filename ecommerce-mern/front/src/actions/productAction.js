@@ -114,7 +114,7 @@ export const createProduct = (productData) => async (dispatch) => {
     const config = {
       headers: { "Content-TYpe": "application/json" },
     };
-    const { data } = await axios.put(`/api/v1/admin/product/new`, productData, config);
+    const { data } = await axios.post(`/api/v1/admin/product/new`, productData, config);
 
     dispatch({
       type: NEW_PRODUCT_SUCCESS,

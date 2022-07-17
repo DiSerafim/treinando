@@ -7,12 +7,15 @@ const cloudinary = require("cloudinary");
 // Cria um produto -- admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   let images = [];
+
   if (typeof req.body.images === "string") {
     images.push(req.body.images);
   } else {
     images = req.body.images;
   }
+
   const imagesLinks = [];
+
   for (let i = 0; i < images.length; i++) {
     const result = await cloudinary.v2.uploader.upload(images[i], {
       folder: "products",
@@ -22,16 +25,19 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
       url: result.secure_url,
     });
   }
+
   req.body.images = imagesLinks;
   req.body.user = req.user.id;
+
   const product = await Product.create(req.body);
+  
   res.status(201).json({
     success: true,
     product,
   });
 });
 
-// Pega todos produtos (paginação)
+// Pega todos produtos (paginação, usuário)
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   const resultPerPage = 8;
   const productsCount = await Product.countDocuments();
@@ -57,7 +63,7 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// Get All Product (Admin)
+// Pega todos produtos(Admin)
 exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
   const products = await Product.find();
 
@@ -67,7 +73,7 @@ exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// Get Product Details
+// Pega Product Details
 exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
 

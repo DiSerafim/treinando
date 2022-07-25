@@ -8,63 +8,68 @@ import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData";
 
 const ForgotPassword = () => {
-    const dispatch = useDispatch();
-    const alert = useAlert();
+  const dispatch = useDispatch();
+  const alert = useAlert();
 
-    const { error, message, loading } = useSelector(
-        (state) => state.forgotPassword
-    );
+  const { error, message, loading } = useSelector(
+    (state) => state.forgotPassword
+  );
 
-    const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
 
-    const forgotPasswordSubmit = (e) => {
-        e.preventDefault();
-        const myForm = new FormData();
-        myForm.set("email", email);
-        dispatch(forgotPassword(myForm));
+  const forgotPasswordSubmit = (e) => {
+    e.preventDefault();
+
+    const myForm = new FormData();
+
+    myForm.set("email", email);
+    dispatch(forgotPassword(myForm));
+  };
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
     }
 
-    useEffect(() => {
-        if (error) {
-            alert.error(error);
-            dispatch(clearErrors());
-        }
-        if (message) {
-            alert.success(message);
-        }
-    }, [dispatch, error, alert, message]);
+    if (message) {
+      alert.success(message);
+    }
+  }, [dispatch, error, alert, message]);
 
-    return (
-        <Fragment>
-            { loading ? (<Loader />) : 
-                (<Fragment>
-                    <MetaData title="Recuperar senha'" />
-                    <div className="forgotPasswordContainer">
-                        <div className="forgotPasswordBox">
-                            <h2 className="forgotPasswordHeading">Recuperar senha</h2>
-                            <form
-                                className="forgotPasswordForm"
-                                onSubmit={forgotPasswordSubmit}
-                            >
-                                <div className="forgotPasswordEmail">
-                                    <MailOutlineIcon />
-                                    <input
-                                        type="email"
-                                        placeholder="Email"
-                                        required
-                                        name="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    />
-                                </div>
-                                <input type="submit" value="Atualizar" className="forgotPasswordBtn" />
-                            </form>
-                        </div>
-                    </div>
-                </Fragment>)
-            }
-        </Fragment>
-    );
-}
+  return (
+    <Fragment>
+      { loading ? (<Loader />) :
+      (<Fragment>
+          <MetaData title="Recuperar senha" />
+          <div className="forgotPasswordContainer">
+            <div className="forgotPasswordBox">
+              <h2 className="forgotPasswordHeading">Recuperar senha</h2>
+
+              <form
+                className="forgotPasswordForm"
+                onSubmit={forgotPasswordSubmit}
+              >
+                <div className="forgotPasswordEmail">
+                  <MailOutlineIcon />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    required
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+
+                <input type="submit" value="Atualizar" className="forgotPasswordBtn" />
+              </form>
+            </div>
+          </div>
+        </Fragment>)
+        }
+    </Fragment>
+  );
+};
 
 export default ForgotPassword;

@@ -48,7 +48,7 @@ const ResetPassword = ({ history, match }) => {
                     <MetaData title="Alterar Senha" />
                     <div className="resetPasswordContainer">
                         <div className="resetPasswordBox">
-                            <h2 className="resetPasswordHeading">Alterar Senha</h2>
+                            <h2 className="resetPasswordHeading">Criar Nova Senha</h2>
                             <form
                                 className="resetPasswordForm"
                                 onSubmit={resetPasswordSubmit}

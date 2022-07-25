@@ -1,5 +1,5 @@
 .ProductDetails {
-  background-color: rgb(214, 214, 214);
+  background-color: rgb(255, 255, 255);
   width: 100vw;
   max-width: 100%;
   padding: 6vmax;
@@ -16,10 +16,6 @@
   padding: 2vmax;
   box-sizing: border-box;
   border: 1px solid white;
-}
-
-.ProductDetails > Carousel {
-  width: 500px;
 }
 
 .ProductDetails > div:last-child {
@@ -64,7 +60,6 @@
   font: 400 1.8vmax "Franklin Gothic Medium";
   margin: 1vmax 0;
 }
-
 .detailsBlock-3-1 {
   display: flex;
   align-items: center;
@@ -77,9 +72,7 @@
   cursor: pointer;
   color: white;
   transition: all 0.5s;
-  border-radius: 22%;
 }
-
 .detailsBlock-3-1-1 > button:hover {
   background-color: rgba(0, 0, 0, 0.767);
 }
@@ -142,7 +135,6 @@
   transition: all 0.5s;
   outline: none;
 }
-
 .submitReview:hover {
   background-color: rgb(197, 68, 45);
   transform: scale(1.1);
@@ -152,7 +144,6 @@
   display: flex;
   flex-direction: column;
 }
-
 .submitDialogTextArea {
   border: 1px solid rgba(0, 0, 0, 0.082);
   margin: 1vmax 0;
@@ -171,7 +162,6 @@
   margin: auto;
   margin-bottom: 4vmax;
 }
-
 .reviews {
   display: flex;
   overflow: auto;
@@ -179,25 +169,23 @@
 
 .reviewCard {
   flex: none;
+
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.226);
   border: 1px solid rgba(56, 56, 56, 0.116);
-  width: 15vmax;
+  width: 30vmax;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 1vmax;
   padding: 3vmax;
 }
-
 .reviewCard > img {
   width: 5vmax;
 }
-
 .reviewCard > p {
   color: rgba(0, 0, 0, 0.836);
   font: 600 0.9vmax "Roboto";
 }
-
 .reviewCardComment {
   color: rgba(0, 0, 0, 0.445);
   font: 300 0.8vmax cursive;
@@ -209,7 +197,6 @@
   color: rgba(0, 0, 0, 0.548);
 }
 
-/* max 600px */
 @media screen and (max-width: 600px) {
   .ProductDetails {
     flex-direction: column;
@@ -233,10 +220,8 @@
   .detailsBlock-2 {
     justify-content: center;
   }
-
   .detailsBlock-2 > span {
     font-size: 1.5vmax;
-    margin-left: 5px;
   }
 
   .detailsBlock-3 > h1 {
@@ -251,7 +236,6 @@
   .detailsBlock-3-1-1 {
     padding: 2vmax 0;
   }
-
   .detailsBlock-3-1-1 > button {
     padding: 1.2vmax;
     width: 4vmax;
@@ -290,13 +274,11 @@
     width: 20vmax;
     margin: 3vmax 0;
   }
-  
+
   .reviewCard > p {
     font: 600 3vw "Roboto";
   }
-
   .reviewCardComment {
     font: 300 5vw cursive;
   }
 }
-  

@@ -61,6 +61,6 @@ export const getOrderDetails = (id) => async (dispatch) => {
 
 
 // Limpando erros
-export const clearErros = () => async (dispatch) => {
+export const clearErrors = () => async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
 };

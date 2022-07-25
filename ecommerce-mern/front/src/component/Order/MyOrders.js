@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import "./MyOrders.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErros, myOrders } from "../../actions/orderAction";
+import { clearErrors, myOrders } from "../../actions/orderAction";
 import Loader from "../layout/Loader/Loader";
 import { Link } from "react-router-dom";
 import { useAlert } from "react-alert";
@@ -81,7 +81,7 @@ const MyOrders = () => {
     useEffect(() => {
         if (error) {
             alert.error(error);
-            dispatch(clearErros());
+            dispatch(clearErrors());
         }
         dispatch(myOrders());
     }, [dispatch, alert, error]);

@@ -71,9 +71,11 @@
 .lineChart {
     width: 80%;
     margin: auto;
+    background-color: #ccc;
 }
 
 .doughnutChart {
+    background-color: #ccc;
     width: 30vmax;
     margin: auto;
 }

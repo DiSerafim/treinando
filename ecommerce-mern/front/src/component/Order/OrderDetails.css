@@ -27,14 +27,14 @@
 }
 
 .orderDetailsContainerBox > div > p {
-    font: 400 1vmax "Roboto";
-    color: black;
-}
-
-.orderDetailsContainerBox > div > span {
     margin: 0 1vmax;
     font: 100 1vmax "Roboto";
     color: #575757;
+}
+
+.orderDetailsContainerBox > div > Span {
+    font: 400 1vmax "Roboto";
+    color: black;
 }
 
 .orderDetailsCartItems > p {
@@ -53,7 +53,7 @@
     margin: 2vmax 0;
 }
 
-.orderDetailsCartItemsContainer > img {
+.orderDetailsCartItemsContainer > div > img {
     width: 3vmax;
 }
 
@@ -71,7 +71,7 @@
 
 @media screen and (max-width: 600px) {
     .orderDetailsContainer > p {
-        font: 400 6vw "Roboto";
+        font: 200 6vw "Roboto";
     }
 
     .orderDetailsContainerBox > div {
@@ -79,7 +79,7 @@
     }
 
     .orderDetailsContainerBox > div > p {
-        font: 400 4vw "Roboto";
+        font: 200 4vw "Roboto";
     }
 
     .orderDetailsContainerBox > div > span {
@@ -87,11 +87,11 @@
     }
 
     .orderDetailsCartItems > p {
-        font: 400 6vw "Roboto";
+        font: 200 6vw "Roboto";
     }
 
     .orderDetailsCartItemsContainer > div {
-        font: 400 4vw "Roboto";
+        font: 200 4vw "Roboto";
         margin: 4vw 0;
     }
 

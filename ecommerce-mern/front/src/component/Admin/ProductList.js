@@ -11,6 +11,10 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Sidebar from "./Sidebar";
 
+
+// 13:01:33H
+
+
 const ProductList = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
@@ -62,7 +66,7 @@ const ProductList = () => {
             renderCell: (params) => {
                 return (
                     <Fragment>
-                        <Link to={`/admin/product/$(params.getValue(params.id, "id")}`}>
+                        <Link to={`/admin/product/${params.getValue(params.id, "id")}`}>
                             <EditIcon />
                         </Link>
                         <Button>

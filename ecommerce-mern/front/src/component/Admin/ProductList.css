@@ -4,10 +4,11 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    height: 100vh;
     width: 100%;
 }
 
-.ProductListHeading {
+#ProductListHeading {
     box-sizing: border-box;
     color: rgba(0, 0, 0, 0.637);
     font: 400 2rem "Roboto";
@@ -22,26 +23,26 @@
     border: none !important;
 }
 
-.productListTable > div {
+.productListTable div {
     border: none !important;
     color: rgba(0, 0, 0, 0.678);
     font: 300 1vmax "Roboto";
 }
 
-.productListTable > a, .productListTable > button {
+.productListTable a, .productListTable button {
     color: rgba(0, 0, 0, 0.527);
     transition: all 0.5s;
 }
 
-.productListTable > a:hover {
+.productListTable a:hover {
     color: tomato;
 }
 
-.productListTable > button:hover {
+.productListTable button:hover {
     color: rgb(236, 30, 30);
 }
 
-.MuiDataGrid-columnHeader > div {
+.MuiDataGrid-columnHeader div {
     color: rgb(255, 255, 255);
 }
 

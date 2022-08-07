@@ -12,10 +12,6 @@ import { Dialog, DialogActions, DialogContent, DialogTitle, Button } from "@mate
 import { Rating } from "@material-ui/lab";
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
 
-
-// 12:10:43
-
-
 const ProductDetails = ({ match }) => {
     const dispatch = useDispatch();
     const alert = useAlert();
@@ -78,7 +74,7 @@ const ProductDetails = ({ match }) => {
         dispatch(clearErrors());
       }
       if (success) {
-        alert.success("Avaliação enviada!");
+        alert.success("Sua opinião é muito importante, Obrigado!");
         dispatch({ type: NEW_REVIEW_RESET });
       }
       dispatch(getProductDetails(match.params.id));
@@ -116,7 +112,7 @@ const ProductDetails = ({ match }) => {
                   <Rating { ...options } />
                   <span className="detailsBlock-2-span">
                     {" "}
-                    ({ product.numOfReviews })
+                    { product.numOfReviews }
                   </span>
                 </div>
                 <div className="detailsBlock-3">

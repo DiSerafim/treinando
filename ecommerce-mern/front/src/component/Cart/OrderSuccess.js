@@ -4,10 +4,6 @@ import "./OrderSuccess.css";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-
-// 11:37:36
-
-
 const OrderSuccess = () => {
     return (
         <div className="orderSuccess">

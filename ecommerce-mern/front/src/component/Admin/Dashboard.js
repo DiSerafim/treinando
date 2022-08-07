@@ -17,35 +17,89 @@ const Dashboard = () => {
     products &&
         products.forEach((item) => {
             if (item.Stock === 0) {
-                outOfStock += 1;
+               outOfStock += 1;
             }
-        });
+    });
 
     useEffect(() => {
         dispatch(getAdminProduct());
     }, [dispatch]);
 
+
+    // OBS: os gráficos estão marcados, pois estão com erros, ainda não resolvidos
+
+
     const lineState = {
         labels: ["Quantidade inicial", "Valor ganho"],
         datasets: [
-            {
-                label: "Valor total",
-                backgroundColor: ["tomato"],
-                hoverBackgroundColor: ["rgb(197,72, 49)"],
-                data: [0, 4000],
-            },
+            // {
+            //     label: "Valor total",
+            //     backgroundColor: ["tomato"],
+            //     hoverBackgroundColor: ["rgb(197,72, 49)"],
+            //     data: [0, 4000],
+            // },
         ],
     };
 
     const doughnutState = {
         labels: ["Fora de estoque", "Em estoque"],
         datasets: [
-            {
-                backgroundColor: ["#00A6B4", "#6800B4"],
-                hoverBackgroundColor: ["#4B5000", "#35014F"],
-                data: [outOfStock, products.length - outOfStock],
-            },
+            // {
+            //     backgroundColor: ["#00A6B4", "#6800B4"],
+            //     hoverBackgroundColor: ["#4B5000", "#35014F"],
+            //     data: [outOfStock, products.length - outOfStock],
+            // },
         ],
+    };
+
+    const options = {
+        responsive: true,
+        tooltips: {
+            mode: 'label'
+        },
+        elements: {
+            line: {
+                fill: false
+            }
+        },
+        scales: {
+            xAxes: [
+                {
+                    display: true,
+                    gridLines: {
+                        display: false
+                    },
+                    labels: {
+                        show: true
+                    }
+                }
+            ],
+            yAxes: [
+                {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    id: 'y-axis-1',
+                    gridLines: {
+                        display: false
+                    },
+                    labels: {
+                        show: true
+                    }
+                }, {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    id: 'y-axis-2',
+                    gridLines: {
+                        display: false
+                    },
+                    labels: {
+                        show: true
+                    }
+                }
+            ]
+        }
     };
 
     return (
@@ -57,7 +111,7 @@ const Dashboard = () => {
 
                 <div className="dashboardSummary">
                     <div>
-                        <p>Total <br /> R$ 2000</p>
+                        <p>Total <br /> R$ 2000,00</p>
                     </div>
                     <div className="dashboardSummaryBox2">
                         <Link to="/admin/products">
@@ -66,7 +120,7 @@ const Dashboard = () => {
                         </Link>
                         <Link to="/admin/orders">
                             <p>Pedidos</p>
-                            <p>4</p>
+                            <p>{products && products.order} 2</p>
                         </Link>
                         <Link to="/admin/users">
                             <p>Usuarios</p>
@@ -75,10 +129,10 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className="lineChart">
-                    <Line data={lineState} />
+                    <Line data={lineState} options={options} />
                 </div>
                 <div className="doughnutChart">
-                    <Doughnut data={doughnutState} />
+                    <Doughnut data={doughnutState} options={options} />
                 </div>
             </div>
         </div>

@@ -32,29 +32,29 @@ const OrderDetails = ({ match }) => {
           <div className="orderDetailsPage">
             <div className="orderDetailsContainer">
               <Typography component="h1">
-                Order #{order && order._id}
+                Id #{order && order._id}
               </Typography>
-              <Typography>Shipping Info</Typography>
+              <Typography>Informações para o envio</Typography>
               <div className="orderDetailsContainerBox">
                 <div>
-                  <p>Name:</p>
+                  <p>Nome:</p>
                   <span>{order.user && order.user.name}</span>
                 </div>
                 <div>
-                  <p>Phone:</p>
+                  <p>Telefone:</p>
                   <span>
                     {order.shippingInfo && order.shippingInfo.phoneNo}
                   </span>
                 </div>
                 <div>
-                  <p>Address:</p>
+                  <p>Endereço:</p>
                   <span>
                     {order.shippingInfo &&
                       `${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state}, ${order.shippingInfo.pinCode}, ${order.shippingInfo.country}`}
                   </span>
                 </div>
               </div>
-              <Typography>Payment</Typography>
+              <Typography>Situação do Pagamento</Typography>
               <div className="orderDetailsContainerBox">
                 <div>
                   <p
@@ -67,18 +67,18 @@ const OrderDetails = ({ match }) => {
                   >
                     {order.paymentInfo &&
                     order.paymentInfo.status === "succeeded"
-                      ? "PAID"
-                      : "NOT PAID"}
+                      ? "PAGO"
+                      : "NÂO PAGO"}
                   </p>
                 </div>
 
                 <div>
-                  <p>Amount:</p>
-                  <span>{order.totalPrice && order.totalPrice}</span>
+                  <p>Valor Total:</p>
+                  <span>{order.totalPrice && order.totalPrice},00</span>
                 </div>
               </div>
 
-              <Typography>Order Status</Typography>
+              <Typography>Situação do pedido</Typography>
               <div className="orderDetailsContainerBox">
                 <div>
                   <p
@@ -95,7 +95,7 @@ const OrderDetails = ({ match }) => {
             </div>
 
             <div className="orderDetailsCartItems">
-              <Typography>Order Items:</Typography>
+              <Typography>Pedidos:</Typography>
               <div className="orderDetailsCartItemsContainer">
                 {order.orderItems &&
                   order.orderItems.map((item) => (
@@ -105,8 +105,8 @@ const OrderDetails = ({ match }) => {
                         {item.name}
                       </Link>{" "}
                       <span>
-                        {item.quantity} X ₹{item.price} ={" "}
-                        <b>₹{item.price * item.quantity}</b>
+                        {item.quantity} X R$ {item.price},00 = {" "}
+                        <b>R$ {item.price * item.quantity},00</b>
                       </span>
                     </div>
                   ))}
